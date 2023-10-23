@@ -23,7 +23,9 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Books != null ? 
-                          View(await _context.Books.ToListAsync()) :
+                          View(await _context.Books
+                          .Include(x=>x.Author)
+                          .ToListAsync()) :
                           Problem("Entity set 'LibraryContext.Books'  is null.");
         }
 
@@ -35,7 +37,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books
+            var book = await _context.Books.Include(x => x.Author)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
@@ -48,6 +50,8 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
+            var authorList = _context.Authors.Select(x => new { x.ID, FullName = x.FirstName + " " + x.LastName });
+            ViewData["AuthorID"]=new SelectList(authorList, "ID", "FullName");
             return View();
         }
 
@@ -80,6 +84,8 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
             {
                 return NotFound();
             }
+            var authorList = _context.Authors.Select(x => new { x.ID, FullName = x.FirstName + " " + x.LastName });
+            ViewData["AuthorID"] = new SelectList(authorList, "ID", "FullName");
             return View(book);
         }
 
@@ -127,6 +133,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
             }
 
             var book = await _context.Books
+                .Include(x => x.Author)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
