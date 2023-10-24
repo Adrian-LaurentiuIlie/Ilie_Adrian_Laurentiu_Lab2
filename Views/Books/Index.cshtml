@@ -33,9 +33,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                 @{var FullName = item.Author.FirstName + " " + item.Author.LastName;}
-                 @Html.DisplayFor(modelItem => FullName)
+            <td> 
+                 @Html.DisplayFor(modelItem => item.Author.FirstName)
+                 @Html.DisplayFor(modelItem => item.Author.LastName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

@@ -15,7 +15,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Models
 
         public Author? Author { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
-        public ICollection<PublishedBook> PublishedBooks { get; set; }
+        public ICollection<Order>? Orders { get; set; }
+        public ICollection<PublishedBook>? PublishedBooks { get; set; }
     }
 }

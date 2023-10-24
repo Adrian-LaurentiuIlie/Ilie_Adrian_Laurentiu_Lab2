@@ -27,7 +27,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
             ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
             if (searchString != null) { pageNumber = 1; } else { searchString = currentFilter; }
             ViewData["CurrentFilter"] = searchString;
-            var books = from b in _context.Books select b;
+            var books = from b in _context.Books select b ;
             if (!String.IsNullOrEmpty(searchString)) { books = books.Where(s => s.Title.Contains(searchString)); }
             switch (sortOrder)
             {
