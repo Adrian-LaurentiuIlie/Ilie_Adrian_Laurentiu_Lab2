@@ -27,6 +27,9 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
             viewModel.Publishers = await _context.Publishers
             .Include(i => i.PublishedBooks)
             .ThenInclude(i => i.Book)
+            .ThenInclude(i => i.Author)
+            .Include(i => i.PublishedBooks)
+            .ThenInclude(i => i.Book)
             .ThenInclude(i => i.Orders)
             .ThenInclude(i => i.Customer)
             .AsNoTracking()

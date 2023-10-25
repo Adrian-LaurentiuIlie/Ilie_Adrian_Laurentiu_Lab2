@@ -77,7 +77,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Author,Price")] Book book)
+        public async Task<IActionResult> Create([Bind("Title,AuthorID,Price")] Book book)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
         // POST: Books/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
         {
@@ -128,7 +128,7 @@ namespace Ilie_Adrian_Laurentiu_Lab2.Controllers
             if (await TryUpdateModelAsync<Book>(
             bookToUpdate,
             "",
-            s => s.Author, s => s.Title, s => s.Price))
+            s => s.AuthorID, s => s.Title, s => s.Price))
             {
                 try
                 {
