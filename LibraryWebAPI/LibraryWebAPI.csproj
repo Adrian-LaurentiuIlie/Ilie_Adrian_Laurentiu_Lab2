@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ilie_Adrian_Laurentiu_Lab2.csproj" />
     <ProjectReference Include="..\LibraryModel\LibraryModel.csproj" />
   </ItemGroup>
 
